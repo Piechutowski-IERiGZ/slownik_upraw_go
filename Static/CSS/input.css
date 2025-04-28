@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .custom-hidden-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .custom-hidden-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@theme {
+    --color-primary-100: rgba(127, 239, 117, 1);
+    --color-primary-200: rgba(102, 196, 94, 1);
+    --color-primary-300: rgba(79, 154, 73, 1);
+    --color-primary-400: rgba(57, 114, 52, 1);
+    --color-primary-500: rgba(36, 76, 33, 1);
+    --color-primary-600: rgba(17, 42, 15, 1);
+    --color-primary-700: rgba(6, 20, 5, 1);
+
+    --color-secondary-100: rgba(219, 249, 214, 1);
+    --color-secondary-200: rgba(149, 219, 134, 1);
+    --color-secondary-300: rgba(120, 177, 108, 1);
+    --color-secondary-400: rgba(92, 137, 82, 1);
+    --color-secondary-500: rgba(65, 99, 58, 1);
+    --color-secondary-600: rgba(40, 63, 35, 1);
+    --color-secondary-700: rgba(17, 30, 14, 1);
+
+    --color-tertiary-100: rgba(244, 220, 210, 1);
+    --color-tertiary-200: rgba(233, 171, 140, 1);
+    --color-tertiary-360: rgba(200, 130, 89, 0.6);
+    --color-tertiary-370: rgba(200, 130, 89, 0.7);
+    --color-tertiary-300: rgba(200, 130, 89, 1);
+    --color-tertiary-400: rgba(151, 98, 65, 1);
+    --color-tertiary-460: rgba(105, 67, 43, 0.6);
+    --color-tertiary-470: rgba(105, 67, 43, 0.7);
+    --color-tertiary-500: rgba(105, 67, 43, 1);
+    --color-tertiary-600: rgba(63, 38, 23, 1);
+    --color-tertiary-700: rgba(27, 14, 6, 1);
+
+    --color-quaternary-100: rgba(201, 236, 174, 1);
+    --color-quaternary-200: rgba(166, 194, 143, 1);
+    --color-quaternary-300: rgba(131, 154, 113, 1);
+    --color-quaternary-460: rgba(98, 116, 84, 0.6);
+    --color-quaternary-470: rgba(98, 116, 84, 0.7);
+    --color-quaternary-400: rgba(98, 116, 84, 1);
+    --color-quaternary-500: rgba(67, 80, 57, 1);
+    --color-quaternary-600: rgba(39, 47, 32, 1);
+    --color-quaternary-700: rgba(11, 15, 8, 1);
+
+    --color-quinary-100: rgba(210, 230, 116, 1);
+    --color-quinary-200: rgba(172, 189, 94, 1);
+    --color-quinary-300: rgba(136, 149, 73, 1);
+    --color-quinary-400: rgba(101, 112, 53, 1);
+    --color-quinary-460: rgba(68, 76, 34, 0.6);
+    --color-quinary-470: rgba(68, 76, 34, 0.6);
+    --color-quinary-500: rgba(68, 76, 34, 1);
+    --color-quinary-600: rgba(38, 43, 16, 1);
+    --color-quinary-700: rgba(15, 18, 4, 1);
+
+    --color-senary-100: rgba(246, 214, 187, 1);
+    --color-senary-200: rgba(231, 168, 94, 1);
+    --color-senary-300: rgba(183, 132, 73, 1);
+    --color-senary-400: rgba(137, 98, 53, 1);
+    --color-senary-500: rgba(94, 66, 34, 1);
+    --color-senary-600: rgba(54, 37, 16, 1);
+    --color-senary-700: rgba(25, 15, 4, 1);
+
+    --color-gray-100: rgba(209, 217, 209, 1);
+    --color-gray-160: rgba(171, 178, 171, 0.6);
+    --color-gray-170: rgba(171, 178, 171, 0.7);
+    --color-gray-200: rgba(171, 178, 171, 1);
+    --color-gray-300: rgba(134, 139, 134, 1);
+    --color-gray-400: rgba(99, 103, 99, 1);
+    --color-gray-500: rgba(66, 69, 66, 1);
+    --color-gray-600: rgba(36, 37, 36, 1);
+    --color-gray-700: rgba(16, 17, 16, 1);
+
+
+    --inset-shadow-clay-green-mesh: inset -12px -12px 16px 0px var(--color-quaternary-460), inset 0px 11px 28px 0px var(--color-quaternary-470);
+    --inset-shadow-clay-green: inset -12px -12px 16px 0px var(--color-quinary-460), inset 0px 11px 28px 0px var(--color-quinary-470);
+    --inset-shadow-clay-brown-medium: inset -12px -12px 16px 0px var(--color-tertiary-360), inset 0px 11px 28px 0px var(--color-tertiary-370);
+    --inset-shadow-clay-brown-regular: inset -12px -12px 16px 0px var(--color-tertiary-460), inset 0px 11px 28px 0px var(--color-tertiary-470);
+    --inset-shadow-clay-gray: inset -12px -12px 16px 0px var(--color-gray-160), inset 0px 11px 28px 0px var(--color-gray-170);
+
+
+
+    --color-gray-260: rgba(134, 139, 134, 0.6);
+    --color-gray-270: rgba(134, 139, 134, 0.7);
+    --inset-shadow-clay-gray-dark: inset -12px -12px 16px 0px var(--color-gray-260), inset 0px 11px 28px 0px var(--color-gray-270);
+
+
+    --color-blue-200: rgba(173, 216, 230, 1); /* Light Blue */
+    --color-blue-260: rgba(100, 160, 200, 0.6); /* Muted Blue */
+    --color-blue-270: rgba(100, 160, 200, 0.7);
+
+    --inset-shadow-clay-blue: inset -12px -12px 16px 0px var(--color-blue-260),
+                              inset 0px 11px 28px 0px var(--color-blue-270);
+
+
+
+    --color-yellow-200: rgba(255, 249, 196, 1); /* Pastel Yellow */
+    --color-yellow-260: rgba(240, 200, 80, 0.6);
+    --color-yellow-270: rgba(240, 200, 80, 0.7);
+
+    --inset-shadow-clay-yellow: inset -12px -12px 16px 0px var(--color-yellow-260),
+                                inset 0px 11px 28px 0px var(--color-yellow-270);
+
+
+    --color-emerald-200: rgba(167, 243, 208, 1); /* Tailwind emerald-200 */
+    --color-emerald-260: rgba(52, 211, 153, 0.6);
+    --color-emerald-270: rgba(52, 211, 153, 0.7);
+
+    --inset-shadow-clay-emerald: inset -12px -12px 16px 0px var(--color-emerald-260),
+                                inset 0px 11px 28px 0px var(--color-emerald-270);
+
+
+}
+
+@font-face {
+    font-family: "Quicksand-Light";
+    font-weight: 300;
+    src: url("Static/Fonsts/Quicksand-Light.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand-Regular";
+    font-weight: 400;
+    src: url("/Static/Fonts/Quicksand-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand-Medium";
+    font-weight: 500;
+    src: url("/Static/Fonsts/Quicksand-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand-SemiBold";
+    font-weight: 600;
+    src: url("/Static/Fonsts/Quicksand-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand-Bold";
+    font-weight: 700;
+    src: url("/Static/Fonsts/Quicksand-Bold.ttf");
+}

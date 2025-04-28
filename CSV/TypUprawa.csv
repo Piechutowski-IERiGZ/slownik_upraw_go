@@ -1,0 +1,6 @@
+IdTypUprawa;NazwaTypUprawaNa;NazwaTypUprawa;OpisTypUprawa;UwagaTypUprawa;IdStatus;Status;DataDodania;DodanyPrzez;DataModyfikacji;ZmodyfikowanyPrzez;DataUsuniecia;UsunietyPrzez
+501;w plonie głównym;plon główny;podstawowa uprawa na danym polu, najważniejsza gospodarczo;;D;Dodany;2025-02-02 19:34:12;Darek Osuch;;;;
+502;jako przedplon;przedplon;roślina uprawiana przed główną uprawą (np. facelia przed pszenicą ozimą);;D;Dodany;2025-02-02 19:34:41;Darek Osuch;;;;
+503;jako międzyplon;międzyplon;np. roślina wysiewana między plonami głównymi, często jako roślina okrywowa lub na zielony nawóz;;D;Dodany;2025-02-02 19:34:50;Darek Osuch;;;;
+504;jako poplon;poplon;roślina wysiewana po zbiorze głównego plonu, uprawiana w tym samym okresie wegetacyjnym;;D;Dodany;2025-02-02 19:34:54;Darek Osuch;;;;
+505;jako wsiewka;wsiewka;roślina uprawiana razem z plonem głównym;;D;Dodany;2025-02-02 19:34:57;Darek Osuch;;;;

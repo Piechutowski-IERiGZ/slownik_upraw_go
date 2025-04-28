@@ -1,0 +1,118 @@
+{{define "title"}}Słownik Upraw - Lista{{end}}
+
+{{define "content"}}
+<div class="grid grid-cols-5 gap-3 w-full h-fit overflow-y-auto">
+    <div class="col-span-full flex justify-center space-x-4 bg-gray-100 rounded-2xl inset-shadow-clay-gray p-2">
+        <button class="cursor-pointer inset-shadow-clay-blue bg-blue-200 backdrop-blur-xs rounded-2xl py-1 px-2">Uprawy Lista 📋</button>
+        <button class="cursor-pointer inset-shadow-clay-emerald bg-emerald-200 backdrop-blur-xs rounded-2xl py-1 px-2">Uprawy Klasyfikajca 🗂️</button>
+        <button class="cursor-pointer inset-shadow-clay-blue bg-blue-200 backdrop-blur-xs rounded-2xl py-1 px-2">Typy Upraw 🔢</button>
+        <button class="cursor-pointer inset-shadow-clay-blue bg-blue-200 backdrop-blur-xs rounded-2xl py-1 px-2">Rodzaje Upraw 🌾</button>
+        <button class="cursor-pointer inset-shadow-clay-blue bg-blue-200 backdrop-blur-xs rounded-2xl py-1 px-2">Wykorzystanie Produktów 🛒</button>
+        <button class="cursor-pointer inset-shadow-clay-blue bg-blue-200 backdrop-blur-xs rounded-2xl py-1 px-2">Zmianowanie Warzywo 🥕</button>
+    </div>
+
+    <!-- Search Panel -->
+    <div class="flex w-full flex-1 shrink-1 bg-gray-100 rounded-2xl inset-shadow-clay-gray">
+        <div class="py-2 pl-2">
+            <div class="">Search</div>
+            <form method="get" action="/">
+                <div><label for="nazwaUprawa">Nazwa Uprawy:</label><input type="text" id="nazwaUprawa" name="NazwaUprawa"></div>
+                <div><label for="nazwaLacinskaUprawa">Nazwa Łacińska Uprawy:</label><input type="text" id="nazwaLacinskaUprawa" name="NazwaLacinskaUprawa"></div>
+                <div><label for="nazwaSynonimyUprawa">Synonimy Nazwy Uprawy:</label><input type="text" id="nazwaSynonimyUprawa" name="NazwaSynonimyUprawa"></div>
+                <div><label for="opisUprawa">Opis Uprawy:</label><input type="text" id="opisUprawa" name="OpisUprawa"></div>
+                <div><label for="uwagaUprawa">Uwagi do Uprawy:</label><input type="text" id="uwagaUprawa" name="UwagaUprawa"></div>
+
+                <div><input type="checkbox" id="produktRolny" name="ProduktRolny" value="true"><label for="produktRolny">Produkt Rolny</label></div>
+                <div><input type="checkbox" id="uprawaMiododajna" name="UprawaMiododajna" value="true"><label for="uprawaMiododajna">Uprawa Miododajna</label></div>
+                <div><input type="checkbox" id="uprawaEkologiczna" name="UprawaEkologiczna" value="true"><label for="uprawaEkologiczna">Uprawa Ekologiczna</label></div>
+                <div><input type="checkbox" id="uprawaEnergetyczna" name="UprawaEnergetyczna" value="true"><label for="uprawaEnergetyczna">Uprawa Energetyczna</label></div>
+                <div><input type="checkbox" id="uprawaOgrodnicza" name="UprawaOgrodnicza" value="true"><label for="uprawaOgrodnicza">Uprawa Ogrodnicza</label></div>
+                <div><input type="checkbox" id="dostawyBezposrednie" name="DostawyBezposrednie" value="true"><label for="dostawyBezposrednie">Dostawy Bezpośrednie</label></div>
+                <div><input type="checkbox" id="rolniczyHandelDetaliczny" name="RolniczyHandelDetaliczny" value="true"><label for="rolniczyHandelDetaliczny">Rolniczy Handel Detaliczny</label></div>
+                <div><input type="checkbox" id="dzialSpecjalny" name="DzialSpecjalny" value="true"><label for="dzialSpecjalny">Dział Specjalny Produkcji Rolnej</label></div>
+                <div><input type="checkbox" id="okrywaZimowa" name="OkrywaZimowa" value="true"><label for="okrywaZimowa">Okrywa Zimowa</label></div>
+                <div><input type="checkbox" id="warzywo" name="Warzywo" value="true"><label for="warzywo">Warzywo</label></div>
+                <div><input type="checkbox" id="warzywoOwocKwiatZiolo" name="WarzywoOwocKwiatZiolo" value="true"><label for="warzywoOwocKwiatZiolo">Warzywo/Owoc/Kwiat/Zioło</label></div>
+
+                <div>
+                    <button type="button" onclick="window.location.href='/download-form'">Pobierz ⬇️</button> {{/* Changed to simple button link */}}
+                    <button type="submit">Szukaj 🔍</button> {{/* Standard submit */}}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-2 col-span-4 shrink-4 rounded-2xl">
+        {{ range .Grupy }}
+            <div class="flex flex-col px-2 pt-1 pb-2 gap-1 bg-gray-100 rounded-2xl inset-shadow-clay-gray">
+                {{/* Access fields using dot notation */}}
+                <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaGrupa }}</div>
+                <div class="hidden flex-col gap-2"> {{/* Start collapsed */}}
+                    {{ range .Klasy }}
+                        <div class="flex flex-col ml-4 px-2 py-1 inset-shadow-clay-blue bg-blue-200 backdrop-blur-xs rounded-2xl">
+                            <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaKlasa }}</div>
+                            <div class="hidden flex-col gap-2"> {{/* Start collapsed */}}
+                                {{ range .Kategorie }}
+                                    <div class="ml-4 px-2 py-1 inset-shadow-clay-emerald bg-emerald-200 rounded-2xl">
+                                        <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaKategoria }}</div>
+                                        <div class="hidden flex-col gap-2"> {{/* Start collapsed */}}
+                                            {{ range .PodKategorie }}
+                                                <div class="flex flex-col ml-4 px-2 py-1 inset-shadow-clay-yellow bg-yellow-200 backdrop-blur-xs rounded-2xl">
+                                                    <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaPodKategoria }}</div>
+                                                    <div class="hidden"> {{/* Start collapsed (max-h-0 removed, handled by JS/CSS potentially) */}}
+                                                        <div class="overflow-x-auto pb-1 my-2">
+                                                            <table class="table-auto ml-4 text-nowrap border-collapse">
+                                                                <thead> {{/* Added thead for structure */}}
+                                                                    <tr>
+                                                                        {{/* Use $ to access root context (.Headers) */}}
+                                                                        {{ range $.Headers }}
+                                                                            <th class="text-left px-3 py-1">{{ . }}</th>
+                                                                        {{ end }}
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody> {{/* Added tbody for structure */}}
+                                                                    {{ range .Uprawy }} {{/* Loop over Uprawa structs */}}
+                                                                        <tr class="even:bg-gray-100">
+                                                                            {{/* Explicitly access Uprawa fields in order matching Headers */}}
+                                                                            <td class="px-3">{{ .IdUprawa }}</td>
+                                                                            <td class="px-3">{{ .IdPodKategoria }}</td>
+                                                                            <td class="px-3">{{ .NazwaUprawa.String }}</td> {{/* Use .String for sql.NullString */}}
+                                                                            <td class="px-3">{{ .NazwaLacinskaUprawa.String }}</td>
+                                                                            <td class="px-3">{{ .NazwaSynonimyUprawa.String }}</td>
+                                                                            <td class="px-3">{{ .OpisUprawa.String }}</td>
+                                                                            <td class="px-3">{{ .UwagaUprawa.String }}</td>
+                                                                            <td class="px-3">{{ if .ProduktRolny }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .UprawaMiododajna }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .UprawaEkologiczna }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .UprawaEnergetyczna }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .UprawaOgrodnicza }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .DostawyBezposrednie }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .RolniczyHandelDetaliczny }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .DzialSpecjalny }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .OkrywaZimowa }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .Warzywo }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .WarzywoOwocKwiatZiolo }}Tak{{ else }}Nie{{ end }}</td>
+                                                                        </tr>
+                                                                    {{ end }}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {{ end }}
+                                        </div>
+                                    </div>
+                                {{ end }}
+                            </div>
+                        </div>
+                    {{ end }}
+                </div>
+            </div>
+        {{ else }}
+            <p class="col-span-full">Brak danych do wyświetlenia.</p>
+        {{ end }}
+    </div>
+</div>
+{{end}}
+
+{{template "base.gohtml" .}}

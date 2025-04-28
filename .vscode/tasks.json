@@ -1,0 +1,57 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"type": "typescript",
+		"tsconfig": "tsconfig.json",
+		"option": "watch",
+		"problemMatcher": [
+		  "$tsc-watch"
+		],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		},
+		"label": "tsc: watch - tsconfig.json",
+		"runOptions": {
+		  "runOn": "folderOpen"
+		}
+	  },
+	  {
+		"type": "shell",
+		"label": "Tailwind",
+		"command": "tailwind",
+		"args": [
+		  "-i",
+		  "Static/CSS/input.css",
+		  "-o",
+		  "Static/CSS/styles.css",
+		  "-w"
+		],
+		"group": {
+		  "kind": "build",
+		  "isDefault": false
+		},
+		"runOptions": {
+		  "runOn": "folderOpen"
+		}
+	  },
+	   {
+		"type": "shell",
+		"label": "NeoFetch",
+		"command": "sh",
+		"args": [
+		  	"-c",
+		  	"neofetch",
+		],
+		"group": {
+		  "kind": "build",
+		  "isDefault": false
+		},
+		"runOptions": {
+		  "runOn": "folderOpen"
+		}
+	  }
+	]
+  }
+  
