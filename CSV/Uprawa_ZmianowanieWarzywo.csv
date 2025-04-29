@@ -10,15 +10,15 @@ IdUprawa_ZmianowanieWarzywo;IdUprawa;IdZmianowanieWarzywo;NazwaUprawa_Zmianowani
 01.11.43.0_902;01.11.43.0;902;Pszenżyto w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.49.0_901;01.11.49.0;901;Pozostałe zboża w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.50.0_901;01.11.50.0;901;Słoma i plewy zbóż w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
-01.11.61.0_902;01.11.61.0;902;Fasola w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
+01.11.61.0_902;01.11.61.0;902;"Fasola w zmianowaniu z uprawami innymi niż warzywa";Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.62.0_901;01.11.62.0;901;Groch w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.69.0_902;01.11.69.0;902;Pozostałe warzywa strączkowe, świeże lub schłodzone w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
-01.11.71.0_901;01.11.71.0;901;Fasola, suszona w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
+01.11.71.0_901;01.11.71.0;901;"Fasola, suszona w zmianowaniu z innymi warzywami";Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.72.0_902;01.11.72.0;902;Bób i bobik, suszone w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.73.0_901;01.11.73.0;901;Ciecierzyca (cieciorka), suszona w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.74.0_902;01.11.74.0;902;Soczewica, suszona w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.75.0_902;01.11.75.0;902;Groch, suszony w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
-01.11.76.0_902;01.11.76.0;902;Fasolnik chiński, suszony w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
+01.11.76.0_902;01.11.76.0;902;"Fasolnik chiński, suszony w zmianowaniu z uprawami innymi niż warzywa";Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.77.0_902;01.11.77.0;902;Nikla indyjska, suszona w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.79.0_901;01.11.79.0;901;Warzywa strączkowe suszone, gdzie indziej niesklasyfikowane w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
 01.11.81.0_902;01.11.81.0;902;Nasiona soi w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:38;Darek Osuch;2025-03-25 19:09:38;Darek Osuch;;
@@ -76,7 +76,7 @@ IdUprawa_ZmianowanieWarzywo;IdUprawa;IdZmianowanieWarzywo;NazwaUprawa_Zmianowani
 01.22.11.0_901;01.22.11.0;901;Awokado w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:40;Darek Osuch;2025-03-25 19:09:40;Darek Osuch;;
 01.22.12.0_901;01.22.12.0;901;Banany, plantany itp. w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:40;Darek Osuch;2025-03-25 19:09:40;Darek Osuch;;
 01.22.13.0_901;01.22.13.0;901;Daktyle w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:40;Darek Osuch;2025-03-25 19:09:40;Darek Osuch;;
-01.22.14.0_902;01.22.14.0;902;Figi w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:40;Darek Osuch;2025-03-25 19:09:40;Darek Osuch;;
+01.22.14.0_902;01.22.14.0;902;"Figi w zmianowaniu z uprawami innymi niż warzywa";Z;Zmodyfikowany;2025-03-25 19:09:40;Darek Osuch;2025-03-25 19:09:40;Darek Osuch;;
 01.22.19.0_901;01.22.19.0;901;Pozostałe świeże owoce tropikalne i podzwrotnikowe w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:40;Darek Osuch;2025-03-25 19:09:40;Darek Osuch;;
 01.23.11.0_901;01.23.11.0;901;Pomelo i grejpfruty w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:40;Darek Osuch;2025-03-25 19:09:40;Darek Osuch;;
 01.23.12.0_901;01.23.12.0;901;Cytryny i limonki w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:40;Darek Osuch;2025-03-25 19:09:40;Darek Osuch;;
@@ -127,4 +127,4 @@ IdUprawa_ZmianowanieWarzywo;IdUprawa;IdZmianowanieWarzywo;NazwaUprawa_Zmianowani
 01.29.10.0_901;01.29.10.0;901;Kauczuk naturalny w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:41;Darek Osuch;2025-03-25 19:09:42;Darek Osuch;;
 01.29.20.0_902;01.29.20.0;902;Choinki świąteczne cięte w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:42;Darek Osuch;2025-03-25 19:09:42;Darek Osuch;;
 01.29.30.0_901;01.29.30.0;901;Materiały roślinne w rodzaju stosowanych głównie do wyplatania, wyściełania, wypychania lub w farbowaniu lub garbowaniu w zmianowaniu z innymi warzywami;Z;Zmodyfikowany;2025-03-25 19:09:42;Darek Osuch;2025-03-25 19:09:42;Darek Osuch;;
-01.30.10.0_902;01.30.10.0;902;"Materiał nasadzeniowy: rośliny żywe, cebulki, bulwy i korzenie, sadzonki i szczepy; grzybnia" w zmianowaniu z uprawami innymi niż warzywa;Z;Zmodyfikowany;2025-03-25 19:09:42;Darek Osuch;2025-03-25 19:09:42;Darek Osuch;;
+01.30.10.0_902;01.30.10.0;902;"Materiał nasadzeniowy: rośliny żywe, cebulki, bulwy i korzenie, sadzonki i szczepy; grzybnia w zmianowaniu z uprawami innymi niż warzywa";Z;Zmodyfikowany;2025-03-25 19:09:42;Darek Osuch;2025-03-25 19:09:42;Darek Osuch;;

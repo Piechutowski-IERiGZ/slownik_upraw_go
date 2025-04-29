@@ -10,15 +10,15 @@ IdPodKategoria;IdKategoria;NazwaPodKategoria;IdStatus;Status;DataDodania;DodanyP
 01.11.43;01.11.4;Pszenżyto;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.49;01.11.4;Pozostałe zboża;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.50;01.11.5;Słoma i plewy zbóż;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
-01.11.61;01.11.6;Fasola;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
+01.11.61;01.11.6;"Fasola";Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.62;01.11.6;Groch;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.69;01.11.6;Pozostałe warzywa strączkowe, świeże lub schłodzone;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
-01.11.71;01.11.7;Fasola, suszona;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
+01.11.71;01.11.7;"Fasola, suszona";Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.72;01.11.7;Bób i bobik, suszone;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.73;01.11.7;Ciecierzyca (cieciorka), suszona;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.74;01.11.7;Soczewica, suszona;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.75;01.11.7;Groch, suszony;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
-01.11.76;01.11.7;Fasolnik chiński, suszony;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
+01.11.76;01.11.7;"Fasolnik chiński, suszony";Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:37;Darek Osuch;;
 01.11.77;01.11.7;Nikla indyjska, suszona;Z;Zmodyfikowany;2025-03-25 19:13:37;Darek Osuch;2025-03-25 19:13:38;Darek Osuch;;
 01.11.79;01.11.7;Warzywa strączkowe suszone, gdzie indziej niesklasyfikowane;Z;Zmodyfikowany;2025-03-25 19:13:38;Darek Osuch;2025-03-25 19:13:38;Darek Osuch;;
 01.11.81;01.11.8;Nasiona soi;Z;Zmodyfikowany;2025-03-25 19:13:38;Darek Osuch;2025-03-25 19:13:38;Darek Osuch;;
@@ -76,7 +76,7 @@ IdPodKategoria;IdKategoria;NazwaPodKategoria;IdStatus;Status;DataDodania;DodanyP
 01.22.11;01.22.1;Awokado;Z;Zmodyfikowany;2025-03-25 19:13:39;Darek Osuch;2025-03-25 19:13:39;Darek Osuch;;
 01.22.12;01.22.1;Banany, plantany itp.;Z;Zmodyfikowany;2025-03-25 19:13:39;Darek Osuch;2025-03-25 19:13:39;Darek Osuch;;
 01.22.13;01.22.1;Daktyle;Z;Zmodyfikowany;2025-03-25 19:13:39;Darek Osuch;2025-03-25 19:13:39;Darek Osuch;;
-01.22.14;01.22.1;Figi;Z;Zmodyfikowany;2025-03-25 19:13:39;Darek Osuch;2025-03-25 19:13:39;Darek Osuch;;
+01.22.14;01.22.1;"Figi";Z;Zmodyfikowany;2025-03-25 19:13:39;Darek Osuch;2025-03-25 19:13:39;Darek Osuch;;
 01.22.19;01.22.1;Pozostałe owoce tropikalne i podzwrotnikowe;Z;Zmodyfikowany;2025-03-25 19:13:39;Darek Osuch;2025-03-25 19:13:39;Darek Osuch;;
 01.23.11;01.23.1;Pomelo i grejpfruty;Z;Zmodyfikowany;2025-03-25 19:13:39;Darek Osuch;2025-03-25 19:13:39;Darek Osuch;;
 01.23.12;01.23.1;Cytryny i limonki;Z;Zmodyfikowany;2025-03-25 19:13:39;Darek Osuch;2025-03-25 19:13:39;Darek Osuch;;

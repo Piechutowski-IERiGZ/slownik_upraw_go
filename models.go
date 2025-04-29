@@ -2,13 +2,10 @@ package main
 
 import "database/sql"
 
-// Using pointers for fields that might be conceptually nullable or text fields
-// SQLite often treats bools as integers (0/1), so use bool and handle scanning appropriately.
-// Match field names to template usage later (or use JSON tags if planning APIs).
 
 type Uprawa struct {
-	IdUprawa                 string            `db:"IdUprawa"` // Assuming PK is integer
-	IdPodKategoria           string            `db:"IdPodKategoria"`
+	IdUprawa                 string         `db:"IdUprawa"`
+	IdPodKategoria           string         `db:"IdPodKategoria"`
 	NazwaUprawa              sql.NullString `db:"NazwaUprawa"`
 	NazwaLacinskaUprawa      sql.NullString `db:"NazwaLacinskaUprawa"`
 	NazwaSynonimyUprawa      sql.NullString `db:"NazwaSynonimyUprawa"`
@@ -36,30 +33,28 @@ type PodKategoria struct {
 type Kategoria struct {
 	IdKategoria    string
 	NazwaKategoria string
-	PodKategorie   []*PodKategoria // Pointer to allow modifications
+	PodKategorie   []*PodKategoria
 }
 
 type Klasa struct {
 	IdKlasa    string
 	NazwaKlasa string
-	Kategorie  []*Kategoria // Pointer to allow modifications
+	Kategorie  []*Kategoria
 }
 
 type Grupa struct {
 	IdGrupa    string
 	NazwaGrupa string
-	Klasy      []*Klasa // Pointer to allow modifications
+	Klasy      []*Klasa 
 }
 
-// Structure to pass data to the main template
 type IndexData struct {
 	Headers []string
-	Grupy   []*Grupa // Use pointers for consistency with map storage
+	Grupy   []*Grupa
 }
 
-// Python WTForms equivalent isn't directly available. We'll just pass headers for display.
-// If form *submission* was needed, we'd parse request form values.
-var uprawaHeaders = []string{
+
+var uprawaHeaders = []string {
 	"Id Uprawy",
 	"Id Podkategorii",
 	"Nazwa Uprawy",

@@ -1,4 +1,0 @@
-IdStatus;NazwaStatus;OpisStatus;UwagiStatus;IdStatus;Status;DataDodania;DodanyPrzez;DataModyfikacji;ZmodyfikowanyPrzez;DataUsuniecia;UsunietyPrzez
-D;Dodany;Po dodaniu wiersza.;;Z;Zmodyfikowany;2025-02-01 15:27:46;Darek Osuch;2025-02-01 15:29:04;Darek Osuch;;
-Z;Zmodyfikowany;Po zmodyfikowaniu wiersza.;;Z;Zmodyfikowany;2025-02-01 15:27:58;Darek Osuch;2025-02-01 15:29:29;Darek Osuch;;
-U;Usunięty;Po usunięciu wiersza.\r\nLogiczne oznaczenie usunięcia wiersza.;Cofnięcie usunięcia spowoduje nadanie statusu 'Z'.\r\nWierszy o IdStatusu=="U" nie prezentuje się na www.;Z;Zmodyfikowany;2025-02-01 15:28:05;Darek Osuch;2025-02-01 15:30:00;Darek Osuch;;
