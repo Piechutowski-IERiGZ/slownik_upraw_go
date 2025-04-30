@@ -1,4 +1,4 @@
-package main
+package models
 
 import "database/sql"
 
@@ -45,7 +45,7 @@ type Klasa struct {
 type Grupa struct {
 	IdGrupa    string
 	NazwaGrupa string
-	Klasy      []*Klasa 
+	Klasy      []*Klasa
 }
 
 type IndexData struct {
@@ -53,8 +53,7 @@ type IndexData struct {
 	Grupy   []*Grupa
 }
 
-
-var uprawaHeaders = []string {
+var uprawaHeaders = []string{
 	"Id Uprawy",
 	"Id Podkategorii",
 	"Nazwa Uprawy",

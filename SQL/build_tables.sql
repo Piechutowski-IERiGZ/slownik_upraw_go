@@ -101,3 +101,6 @@ CREATE TABLE "Uprawa" (
   "UsunietyPrzez" TEXT,
   FOREIGN KEY ("IdPodKategoria") REFERENCES "PodKategoria" ("IdPodKategoria")
 );
+
+
+

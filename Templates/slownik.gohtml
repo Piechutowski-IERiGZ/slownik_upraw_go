@@ -57,48 +57,7 @@
                                         <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaKategoria }}</div>
                                         <div class="hidden flex-col gap-2"> {{/* Start collapsed */}}
                                             {{ range .PodKategorie }}
-                                                <div class="flex flex-col ml-4 px-2 py-1 inset-shadow-clay-yellow bg-yellow-200 backdrop-blur-xs rounded-2xl">
-                                                    <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaPodKategoria }}</div>
-                                                    <div class="hidden"> {{/* Start collapsed (max-h-0 removed, handled by JS/CSS potentially) */}}
-                                                        <div class="overflow-x-auto pb-1 my-2">
-                                                            <table class="table-auto ml-4 text-nowrap border-collapse">
-                                                                <thead> {{/* Added thead for structure */}}
-                                                                    <tr>
-                                                                        {{/* Use $ to access root context (.Headers) */}}
-                                                                        {{ range $.Headers }}
-                                                                            <th class="text-left px-3 py-1">{{ . }}</th>
-                                                                        {{ end }}
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody> {{/* Added tbody for structure */}}
-                                                                    {{ range .Uprawy }} {{/* Loop over Uprawa structs */}}
-                                                                        <tr class="even:bg-gray-100">
-                                                                            {{/* Explicitly access Uprawa fields in order matching Headers */}}
-                                                                            <td class="px-3">{{ .IdUprawa }}</td>
-                                                                            <td class="px-3">{{ .IdPodKategoria }}</td>
-                                                                            <td class="px-3">{{ .NazwaUprawa.String }}</td> {{/* Use .String for sql.NullString */}}
-                                                                            <td class="px-3">{{ .NazwaLacinskaUprawa.String }}</td>
-                                                                            <td class="px-3">{{ .NazwaSynonimyUprawa.String }}</td>
-                                                                            <td class="px-3">{{ .OpisUprawa.String }}</td>
-                                                                            <td class="px-3">{{ .UwagaUprawa.String }}</td>
-                                                                            <td class="px-3">{{ if .ProduktRolny }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .UprawaMiododajna }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .UprawaEkologiczna }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .UprawaEnergetyczna }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .UprawaOgrodnicza }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .DostawyBezposrednie }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .RolniczyHandelDetaliczny }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .DzialSpecjalny }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .OkrywaZimowa }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .Warzywo }}Tak{{ else }}Nie{{ end }}</td>
-                                                                            <td class="px-3">{{ if .WarzywoOwocKwiatZiolo }}Tak{{ else }}Nie{{ end }}</td>
-                                                                        </tr>
-                                                                    {{ end }}
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               
                                             {{ end }}
                                         </div>
                                     </div>
