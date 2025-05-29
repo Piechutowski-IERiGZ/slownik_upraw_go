@@ -4,21 +4,39 @@ import (
 	"database/sql"
 	"encoding/csv"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
-	"slownik_upraw/ui"
-	"slownik_upraw/models"	
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
 // GLOBALS
 var db *sql.DB
-var uprawaHeaders = []string {
+var tmpl *template.Template
+
+func initTemplates() {
+	var err error
+	tmpl, err = template.ParseFiles(
+		"Templates/base.html",
+		"Templates/slownik_upraw_menu.html",
+		"Templates/slownik_upraw/rodzaje_upraw.html",
+		"Templates/slownik_upraw/typy_upraw.html",
+		"Templates/slownik_upraw/uprawy_klasyfikacja.html",
+		"Templates/slownik_upraw/uprawy_lista.html",
+		"Templates/slownik_upraw/wykorzystanie_produktow.html",
+		"Templates/slownik_upraw/zmianowanie_warzywo.html",
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+var uprawaHeaders = []string{
 	"Id Uprawy",
 	"Id Podkategorii",
 	"Nazwa Uprawy",
@@ -39,8 +57,15 @@ var uprawaHeaders = []string {
 	"Warzywo / Owoc / Kwiat / Zioło",
 }
 
+func slownikTemplate(w http.ResponseWriter, data IndexData, temp string) {
+	err := tmpl.ExecuteTemplate(w, "slownik_upraw/"+temp+".html", data)
+	if err != nil {
+		log.Printf("Error executing template slownik.html: %v\n", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+}
 
-func indexHandler(w http.ResponseWriter, r *http.Request) {
+func getGrupy() ([]*Grupa, error) {
 	query := `
     SELECT
         g.IdGrupa, g.NazwaGrupa,
@@ -67,21 +92,19 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	rows, err := db.Query(query)
 	if err != nil {
-		log.Printf("Error querying database: %v\n", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
+		return nil, fmt.Errorf("querying database: %w", err)
 	}
 	defer rows.Close()
 
-	grupaMap := make(map[string]*models.Grupa)
-	klasaMap := make(map[string]*models.Klasa)
-	kategoriaMap := make(map[string]*models.Kategoria)
-	podkategoriaMap := make(map[string]*models.PodKategoria)
+	grupaMap := make(map[string]*Grupa)
+	klasaMap := make(map[string]*Klasa)
+	kategoriaMap := make(map[string]*Kategoria)
+	podkategoriaMap := make(map[string]*PodKategoria)
 
 	for rows.Next() {
 		var gID, klaID, kID, pkID, uID, uPKID,
 			gName, klaName, kName, pkName string
-		var u models.Uprawa
+		var u Uprawa
 		var sqlProduktRolny, sqlUprawaMiododajna, sqlUprawaEkologiczna, sqlUprawaEnergetyczna, sqlUprawaOgrodnicza,
 			sqlDostawyBezposrednie, sqlRolniczyHandelDetaliczny, sqlDzialSpecjalny, sqlOkrywaZimowa, sqlWarzywo,
 			sqlWarzywoOwocKwiatZiolo sql.NullString
@@ -103,9 +126,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			&sqlWarzywoOwocKwiatZiolo,
 		)
 		if err != nil {
-			log.Printf("Error scanning row: %v\n", err)
-			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-			return
+			return nil, fmt.Errorf("scanning row: %w", err)
 		}
 
 		u.IdUprawa = uID
@@ -124,27 +145,27 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		grupa, ok := grupaMap[gID]
 		if !ok {
-			grupa = &models.Grupa{IdGrupa: gID, NazwaGrupa: gName}
+			grupa = &Grupa{IdGrupa: gID, NazwaGrupa: gName}
 			grupaMap[gID] = grupa
 		}
 
 		klasa, ok := klasaMap[klaID]
 		if !ok {
-			klasa = &models.Klasa{IdKlasa: klaID, NazwaKlasa: klaName}
+			klasa = &Klasa{IdKlasa: klaID, NazwaKlasa: klaName}
 			klasaMap[klaID] = klasa
 			grupa.Klasy = append(grupa.Klasy, klasa)
 		}
 
 		kategoria, ok := kategoriaMap[kID]
 		if !ok {
-			kategoria = &models.Kategoria{IdKategoria: kID, NazwaKategoria: kName}
+			kategoria = &Kategoria{IdKategoria: kID, NazwaKategoria: kName}
 			kategoriaMap[kID] = kategoria
 			klasa.Kategorie = append(klasa.Kategorie, kategoria)
 		}
 
 		podkategoria, ok := podkategoriaMap[pkID]
 		if !ok {
-			podkategoria = &models.PodKategoria{IdPodKategoria: pkID, NazwaPodKategoria: pkName}
+			podkategoria = &PodKategoria{IdPodKategoria: pkID, NazwaPodKategoria: pkName}
 			podkategoriaMap[pkID] = podkategoria
 			kategoria.PodKategorie = append(kategoria.PodKategorie, podkategoria)
 		}
@@ -153,12 +174,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err = rows.Err(); err != nil {
-		log.Printf("Error after iterating rows: %v\n", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
+		return nil, fmt.Errorf("iterating rows: %w", err)
 	}
 
-	grupySlice := make([]*models.Grupa, 0, len(grupaMap))
+
+	grupySlice := make([]*Grupa, 0, len(grupaMap))
 	for _, g := range grupaMap {
 		grupySlice = append(grupySlice, g)
 	}
@@ -166,17 +186,127 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return grupySlice[i].NazwaGrupa < grupySlice[j].NazwaGrupa
 	})
 
-	data := models.IndexData{
-		Headers: uprawaHeaders,
-		Grupy:   grupySlice,
+	return grupySlice, nil
+}
+
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	grupySlice, err := getGrupy()
+
+	if err != nil {
+		log.Printf("could not get grupy: %v", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
 	}
 
-	ui.SlownikPage(data).Render(r.Context(), w)
-	// err = templates.ExecuteTemplate(w, "slownik.gohtml", data)
-	// if err != nil {
-	// 	log.Printf("Error executing template slownik.gohtml: %v\n", err)
-	// 	http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-	// }
+	data := IndexData{
+		Headers: uprawaHeaders,
+		Grupy:   grupySlice,
+		Tab:     "uprawy_klasyfikacja",
+	}
+	slownikTemplate(w, data, "uprawa_klasyfikacja")
+}
+
+func uprawyLista(w http.ResponseWriter, r *http.Request) {
+	grupySlice, err := getGrupy()
+
+	if err != nil {
+		log.Printf("could not get grupy: %v", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	data := IndexData{
+		Headers: uprawaHeaders,
+		Grupy:   grupySlice,
+		Tab:     "uprawy_lista",
+	}
+	slownikTemplate(w, data, "uprawy_lista")
+}
+
+func uprawyKlasyfikacja(w http.ResponseWriter, r *http.Request) {
+	grupySlice, err := getGrupy()
+	
+	if err != nil {
+		log.Printf("could not get grupy: %v", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	data := IndexData{
+		Headers: uprawaHeaders,
+		Grupy:   grupySlice,
+		Tab:     "uprawy_klasyfikacja",
+	}
+	slownikTemplate(w, data, "uprawy_klasyfikacja")
+}
+
+func typyUpraw(w http.ResponseWriter, r *http.Request) {
+	grupySlice, err := getGrupy()
+
+	if err != nil {
+		log.Printf("could not get grupy: %v", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	data := IndexData{
+		Headers: uprawaHeaders,
+		Grupy:   grupySlice,
+		Tab:     "typy_upraw",
+	}
+	slownikTemplate(w, data, "typy_upraw")
+}
+
+func rodzajeUpraw(w http.ResponseWriter, r *http.Request) {
+	grupySlice, err := getGrupy()
+
+	if err != nil {
+		log.Printf("could not get grupy: %v", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	data := IndexData{
+		Headers: uprawaHeaders,
+		Grupy:   grupySlice,
+		Tab:     "rodzaje_upraw",
+	}
+	slownikTemplate(w, data, "rodzaje_upraw")
+}
+
+func wykorzystanieProduktow(w http.ResponseWriter, r *http.Request) {
+	grupySlice, err := getGrupy()
+
+	if err != nil {
+		log.Printf("could not get grupy: %v", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	data := IndexData{
+		Headers: uprawaHeaders,
+		Grupy:   grupySlice,
+		Tab:     "wykorzystanie_produktow",
+	}
+	slownikTemplate(w, data, "wykorzystanie_produktow")
+}
+
+func zmianowanieWarzywo(w http.ResponseWriter, r *http.Request) {
+	grupySlice, err := getGrupy()
+
+	if err != nil {
+		log.Printf("could not get grupy: %v", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	data := IndexData{
+		Headers: uprawaHeaders,
+		Grupy:   grupySlice,
+		Tab:     "zmianowanie_warzywo",
+	}
+	slownikTemplate(w, data, "zmianowanie_warzywo")
 }
 
 func initDB() {
@@ -299,13 +429,12 @@ func loadData() {
 	log.Println("All data loaded successfully.")
 }
 
-
 func main() {
+	initTemplates()
 	initDB()
 	buildSchema()
 	loadData()
 	defer db.Close()
-	// initTemplates()
 
 	// Setup HTTP Server
 	mux := http.NewServeMux()
@@ -318,6 +447,12 @@ func main() {
 
 	// Application Routes
 	mux.HandleFunc("/", indexHandler)
+	mux.HandleFunc("/uprawy-lista", uprawyLista)
+	mux.HandleFunc("/uprawy-klasyfikacja", uprawyKlasyfikacja)
+	mux.HandleFunc("/typy-upraw", typyUpraw)
+	mux.HandleFunc("/rodzaje-upraw", rodzajeUpraw)
+	mux.HandleFunc("/wykorzystanie-produktow", wykorzystanieProduktow)
+	mux.HandleFunc("/zmianowanie-warzywo", zmianowanieWarzywo)
 
 	// Start Server
 	port := "8080"

@@ -1,0 +1,149 @@
+{{define "content"}}
+<div class="w-full h-fit overflow-y-auto">
+    <div class="mb-2 col-span-full flex justify-center space-x-4 bg-gray-100 rounded-2xl inset-shadow-clay-gray p-2">
+        <a href="/uprawy-lista">
+            <button class="cursor-pointer backdrop-blur-xs rounded-2xl py-1 px-2
+                {{ if eq .Tab "uprawy_lista" }}
+                    bg-emerald-200 inset-shadow-clay-emerald
+                {{ else }}
+                    bg-blue-200 inset-shadow-clay-blue 
+                {{ end }}
+            ">
+                Uprawy Lista 📋
+            </button>
+        </a>
+        <a href="uprawy-klasyfikacja">
+            <button class="cursor-pointer  backdrop-blur-xs rounded-2xl py-1 px-2
+                {{ if eq .Tab "uprawy_klasyfikacja" }}
+                    bg-emerald-200 inset-shadow-clay-emerald
+                {{ else }}
+                    bg-blue-200 inset-shadow-clay-blue 
+                {{ end }}
+            ">
+                Uprawy Klasyfikajca 🗂️
+            </button>
+        </a>
+        <a href="typy-upraw">
+            <button class="cursor-pointer backdrop-blur-xs rounded-2xl py-1 px-2
+                {{ if eq .Tab "typy_upraw" }}            
+                    bg-emerald-200 inset-shadow-clay-emerald
+                {{ else }}
+                    bg-blue-200 inset-shadow-clay-blue 
+                {{ end }}
+            ">
+                Typy Upraw 🔢
+            </button>
+        </a>
+        <a href="rodzaje-upraw">
+            <button class="cursor-pointer backdrop-blur-xs rounded-2xl py-1 px-2
+                {{ if eq .Tab "rodzaje_upraw" }} 
+                    bg-emerald-200 inset-shadow-clay-emerald
+                {{ else }}
+                    bg-blue-200 inset-shadow-clay-blue 
+                {{ end }}
+            ">
+                Rodzaje Upraw 🌾
+            </button>
+        </a>
+        <a href="wykorzystanie-produktow">
+            <button class="cursor-pointer backdrop-blur-xs rounded-2xl py-1 px-2
+                {{ if eq .Tab "wykorzystanie_produktow" }}
+                    bg-emerald-200 inset-shadow-clay-emerald
+                {{ else }}
+                    bg-blue-200 inset-shadow-clay-blue 
+                {{ end }}
+            ">
+                Wykorzystanie Produktów 🛒
+            </button>
+        </a>
+        <a href="zmianowanie-warzywo">
+            <button class="cursor-pointer backdrop-blur-xs rounded-2xl py-1 px-2
+                {{ if eq .Tab "zmianowanie_warzywo" }}
+                    bg-emerald-200 inset-shadow-clay-emerald
+                {{ else }}
+                    bg-blue-200 inset-shadow-clay-blue 
+                {{ end }}
+            ">
+                Zmianowanie Warzywo 🥕
+            </button>
+        </a>
+    </div>
+    {{ template "main-content" .}}
+</div>
+{{end}}
+
+
+{{ define "main-content" }}
+        <div class="flex flex-col gap-2 col-span-4 shrink-4 rounded-2xl">
+        {{ range .Grupy }}
+            <div class="flex flex-col px-2 pt-1 pb-2 gap-1 bg-gray-100 rounded-2xl inset-shadow-clay-gray">
+                {{/* Access fields using dot notation */}}
+                <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaGrupa }}</div>
+                <div class="hidden flex-col gap-2"> {{/* Start collapsed */}}
+                    {{ range .Klasy }}
+                        <div class="flex flex-col ml-4 px-2 py-1 inset-shadow-clay-blue bg-blue-200 backdrop-blur-xs rounded-2xl">
+                            <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaKlasa }}</div>
+                            <div class="hidden flex-col gap-2"> {{/* Start collapsed */}}
+                                {{ range .Kategorie }}
+                                    <div class="ml-4 px-2 py-1 inset-shadow-clay-emerald bg-emerald-200 rounded-2xl">
+                                        <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaKategoria }}</div>
+                                        <div class="hidden flex-col gap-2"> {{/* Start collapsed */}}
+                                            {{ range .PodKategorie }}
+                                                <div class="flex flex-col ml-4 px-2 py-1 inset-shadow-clay-yellow bg-yellow-200 backdrop-blur-xs rounded-2xl">
+                                                    <div class="cursor-pointer" onclick="toggleCollapse(this)">📁 {{ .NazwaPodKategoria }}</div>
+                                                    <div class="hidden"> {{/* Start collapsed (max-h-0 removed, handled by JS/CSS potentially) */}}
+                                                        <div class="overflow-x-auto pb-1 my-2">
+                                                            <table class="table-auto ml-4 text-nowrap border-collapse">
+                                                                <thead> {{/* Added thead for structure */}}
+                                                                    <tr>
+                                                                        {{/* Use $ to access root context (.Headers) */}}
+                                                                        {{ range $.Headers }}
+                                                                            <th class="text-left px-3 py-1">{{ . }}</th>
+                                                                        {{ end }}
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody> {{/* Added tbody for structure */}}
+                                                                    {{ range .Uprawy }} {{/* Loop over Uprawa structs */}}
+                                                                        <tr class="even:bg-gray-100">
+                                                                            {{/* Explicitly access Uprawa fields in order matching Headers */}}
+                                                                            <td class="px-3">{{ .IdUprawa }}</td>
+                                                                            <td class="px-3">{{ .IdPodKategoria }}</td>
+                                                                            <td class="px-3">{{ .NazwaUprawa.String }}</td> {{/* Use .String for sql.NullString */}}
+                                                                            <td class="px-3">{{ .NazwaLacinskaUprawa.String }}</td>
+                                                                            <td class="px-3">{{ .NazwaSynonimyUprawa.String }}</td>
+                                                                            <td class="px-3">{{ .OpisUprawa.String }}</td>
+                                                                            <td class="px-3">{{ .UwagaUprawa.String }}</td>
+                                                                            <td class="px-3">{{ if .ProduktRolny }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .UprawaMiododajna }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .UprawaEkologiczna }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .UprawaEnergetyczna }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .UprawaOgrodnicza }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .DostawyBezposrednie }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .RolniczyHandelDetaliczny }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .DzialSpecjalny }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .OkrywaZimowa }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .Warzywo }}Tak{{ else }}Nie{{ end }}</td>
+                                                                            <td class="px-3">{{ if .WarzywoOwocKwiatZiolo }}Tak{{ else }}Nie{{ end }}</td>
+                                                                        </tr>
+                                                                    {{ end }}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {{ end }}
+                                        </div>
+                                    </div>
+                                {{ end }}
+                            </div>
+                        </div>
+                    {{ end }}
+                </div>
+            </div>
+        {{ else }}
+            <p class="col-span-full">Brak danych do wyświetlenia.</p>
+        {{ end }}
+    </div>
+{{ end }}
+
+{{template "base.html" .}}

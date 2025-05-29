@@ -1,4 +1,4 @@
-package models
+package main
 
 import "database/sql"
 
@@ -51,25 +51,5 @@ type Grupa struct {
 type IndexData struct {
 	Headers []string
 	Grupy   []*Grupa
-}
-
-var uprawaHeaders = []string{
-	"Id Uprawy",
-	"Id Podkategorii",
-	"Nazwa Uprawy",
-	"Nazwa Łacińska Uprawy",
-	"Synonimy Nazwy Uprawy",
-	"Opis Uprawy",
-	"Uwagi do Uprawy",
-	"Produkt Rolny",
-	"Uprawa Miododajna",
-	"Uprawa Ekologiczna",
-	"Uprawa Energetyczna",
-	"Uprawa Ogrodnicza",
-	"Dostawy Bezpośrednie",
-	"Rolniczy Handel Detaliczny",
-	"Dział Specjalny Produkcji Rolnej",
-	"Okrywa Zimowa",
-	"Warzywo",
-	"Warzywo / Owoc / Kwiat / Zioło",
+	Tab 	string
 }
